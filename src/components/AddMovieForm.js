@@ -23,7 +23,10 @@ const AddMovieForm = (props) => {
     }
 
     const handleSubmit = (e) => {
-    }
+        e.preventDefault();
+        props.addMovie(movie);  //movie is the state above. This is going INTO our movieReducer and using the ADD_MOVIE action.
+        push('/movies');
+    }   
 
     const { title, director, genre, metascore, description } = movie;
     return(<div className="col">
@@ -67,4 +70,5 @@ const AddMovieForm = (props) => {
     </div>);
 }
 
-export default AddMovieForm;
+export default connect(null, { addMovie } )(AddMovieForm);
+//the reason why we put null here is because there are no props we are passing in.
